@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nintendo extends Model
+class Consola extends Model
 {
-    protected $table = 'nintendo';
+    
+    protected $table = 'consolas';
 }

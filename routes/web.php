@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::post('/anadir', 'juegosController@anadir')->name('anadir');
 
-Route::post('/anadir', 'juegosController@anadirPs4')->name('anadir');
+Route::get('/', 'juegosController@mostrar')->name('mostrar');

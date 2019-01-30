@@ -3,29 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ps4;
-use App\Nintendo;
+use App\Juego;
+use App\Consola;
+use App\Genero;
 
 class juegosController extends Controller
 {
 
 
 
-    function anadirPs4(Request $request){
+    function anadir(Request $request){
 
-      $ps4 = new Ps4;
-      $ps4->name = $request->input('name');
-      $ps4->genero = $request->input('genero');
-      $ps4->save();
+      $juego = new Juego;
+      $consola = new Consola;
+      $genero = new Genero;
+      $juego->name = $request->input('name');
+      $consola->id = $request-> consola;
+      $genero->id = $request-> genero;
+      $juego->save();
+      $consola->save();
+      $genero->save();
       return view('Welcome');
     }
 
-    function anadirNintedo(Request $request){
+    function mostrar(){
+      $generos = Genero::all();
+      $consolas = Consola::all();
 
-      $nintendo = new Nintendo;
-      $nintendo->name = $request->input('name');
-      $nintendo->genero = $request->input('genero');
-      $nintendo->save();
-      return view('Welcome');
+      return view('welcome')->with(['generos' => $generos, 'consolas' => $consolas]);
     }
+
 }
