@@ -8,4 +8,9 @@ class Consola extends Model
 {
     
     protected $table = 'consolas';
+
+
+    public function juego(){
+    	return $this->hasOne('App\Juego');
+    }
 }

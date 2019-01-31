@@ -13,17 +13,16 @@ class juegosController extends Controller
 
 
     function anadir(Request $request){
+      $generos = Genero::all();
+      $consolas = Consola::all();
+
 
       $juego = new Juego;
-      $consola = new Consola;
-      $genero = new Genero;
       $juego->name = $request->input('name');
-      $consola->id = $request-> consola;
-      $genero->id = $request-> genero;
+      $juego->consola_id = $request-> consola;
+      $juego->genero_id = $request-> genero;
       $juego->save();
-      $consola->save();
-      $genero->save();
-      return view('Welcome');
+      return view('welcome')->with(['generos' => $generos, 'consolas' => $consolas]);
     }
 
     function mostrar(){
@@ -31,6 +30,43 @@ class juegosController extends Controller
       $consolas = Consola::all();
 
       return view('welcome')->with(['generos' => $generos, 'consolas' => $consolas]);
+    }
+
+    function listar(){
+      $juegos = Juego::all();
+      $juegosAccion = Juego::where('genero_id', 1)
+      ->orderBy('name','asc')
+        ->get();
+
+
+      $juegosAventura = Juego::where('genero_id', 2)
+      ->orderBy('name','asc')
+        ->get();
+
+
+      $juegosFiccion = Juego::where('genero_id', 3)
+      ->orderBy('name','asc')
+        ->get();
+
+
+      $numJuegos = count($juegos);
+      return view('lista')->with([
+        'juegosAccion' => $juegosAccion,
+        'juegosAventura' => $juegosAventura,
+        'juegosFiccion' => $juegosFiccion,
+        'numJuegos' => $numJuegos
+      ]);
+    }
+
+
+    function mostrarJuego($id){
+      $juego = Juego::find($id);
+  
+
+      return view('juego')->with([
+        'juego' => $juego
+      ]);
+
     }
 
 }

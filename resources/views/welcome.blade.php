@@ -27,6 +27,9 @@
           </select></br></br>
           <button type="submit">Añadir</button>
         </form>
+
+
+        <p>Mire la lista de juegos <a href="/lista">aqui</a></p>
       </div>
     </body>
 </html>

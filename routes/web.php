@@ -15,3 +15,9 @@
 Route::post('/anadir', 'juegosController@anadir')->name('anadir');
 
 Route::get('/', 'juegosController@mostrar')->name('mostrar');
+
+
+Route::get('/lista', 'juegosController@listar')->name('listar');
+
+
+Route::get('/juego/{id}', 'juegosController@mostrarJuego')->name('mostrarJuego');
